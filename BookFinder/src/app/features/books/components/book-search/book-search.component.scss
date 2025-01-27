@@ -1,0 +1,20 @@
+.search-container {
+  position: relative;
+
+  .search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+  }
+
+  input {
+    padding-right: 35px;
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+      border-color: #80bdff;
+    }
+  }
+}

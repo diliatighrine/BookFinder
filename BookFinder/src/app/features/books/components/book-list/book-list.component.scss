@@ -1,0 +1,90 @@
+.book-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+
+  .card-img-container {
+    height: 300px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-subtitle {
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .category-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: #e9ecef;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #495057;
+  }
+
+  .btn-favorite {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #dc3545;
+    background: transparent;
+    color: #dc3545;
+    transition: all 0.2s ease;
+
+    &:hover, &.favorited {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    i {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.form-select {
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    border-color: #80bdff;
+  }
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
