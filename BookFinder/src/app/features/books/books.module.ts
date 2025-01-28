@@ -10,12 +10,12 @@ import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
+  ],
+  imports: [
     BookListComponent,
     BookDetailComponent,
     BookSearchComponent,
-    BookFavoritesComponent
-  ],
-  imports: [
+    BookFavoritesComponent,
     CommonModule,
     BooksRoutingModule,
     FormsModule,

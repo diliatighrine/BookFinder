@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-book-favorites',
   imports: [],
   templateUrl: './book-favorites.component.html',
+  standalone: true,
   styleUrl: './book-favorites.component.scss'
 })
 export class BookFavoritesComponent {

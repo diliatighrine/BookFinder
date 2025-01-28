@@ -1,10 +1,14 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-book-search',
   templateUrl: './book-search.component.html',
+  standalone: true,
+  imports: [
+    ReactiveFormsModule
+  ],
   styleUrls: ['./book-search.component.scss']
 })
 export class BookSearchComponent {

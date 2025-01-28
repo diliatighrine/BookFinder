@@ -17,8 +17,11 @@ export class BookService {
 
   // Get all books
   getAllBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.apiUrl}/books`);
+    return this.http.get<{ books: Book[] }>(`${this.apiUrl}/books`).pipe(
+      map((response) => response.books)
+    );
   }
+
 
   // Get a single book by ID
   getBookById(id: number): Observable<Book> {

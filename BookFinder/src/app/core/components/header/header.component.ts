@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import {AsyncPipe, NgIf} from '@angular/common';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BookService } from '../../services/book.service';
-import {RouterLinkActive} from '@angular/router';
-import {AsyncPipe} from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -10,14 +11,18 @@ import {AsyncPipe} from '@angular/common';
   standalone: true,
   imports: [
     RouterLinkActive,
-    AsyncPipe
+    AsyncPipe,
+    RouterLink,
+    NgIf
   ],
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  favoritesCount$ = this.bookService.favorites$.pipe(
-    map(favorites => favorites.length)
-  );
+  favoritesCount$: Observable<number>;
 
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService) {
+    this.favoritesCount$ = this.bookService.favorites$.pipe(
+      map(favorites => favorites.length)
+    );
+  }
 }
