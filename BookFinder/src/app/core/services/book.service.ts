@@ -1,83 +1,70 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Book } from '../../shared/models/book.model';
-import { Category } from '../../shared/models/category.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-  private apiUrl = '/api';
+  private googleBooksApiUrl = 'https://www.googleapis.com/books/v1/volumes';
+  private apiKey = 'AIzaSyCFtFVHqxUhW_xQNvNt9AqsxMNrv3g7Q5w'; // Replace with your API key
   private favoritesSubject = new BehaviorSubject<Book[]>(this.loadFavoritesFromStorage());
-  favorites$ = this.favoritesSubject.asObservable();
+  favorites$ = this.favoritesSubject.asObservable(); // Ensure this is exported and accessible
+
 
   constructor(private http: HttpClient) {}
 
-  // Get all books
-  getAllBooks(): Observable<Book[]> {
-    return this.http.get<{ books: Book[] }>(`${this.apiUrl}/books`).pipe(
-      map((response) => response.books)
+  // Search books using Google Books API
+  searchBooks(query: string): Observable<any[]> {
+    const url = `${this.googleBooksApiUrl}?q=${query}&key=${this.apiKey}`;
+    return this.http.get<any>(url).pipe(
+      map((response) => response.items || []) // Map response to books array
     );
   }
 
-
-  // Get a single book by ID
-  getBookById(id: number): Observable<Book> {
-    return this.http.get<Book>(`${this.apiUrl}/books/${id}`);
+  // Get book details by ID
+  getBookById(id: string): Observable<any> {
+    const url = `${this.googleBooksApiUrl}/${id}?key=${this.apiKey}`;
+    return this.http.get<any>(url).pipe(
+      map((response) => response.volumeInfo) // Map to book details
+    );
   }
-
-  // Get books by category
-  getBooksByCategory(category: string): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.apiUrl}/books/category/${category}`);
-  }
-
-  // Search books
-  searchBooks(query: string): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.apiUrl}/books/search/${query}`);
-  }
-
-  // Get all categories
-  getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.apiUrl}/categories`);
-  }
-
-  // Add a book to favorites
-  addToFavorites(book: Book): void {
+  // Add book to favorites
+  addToFavorites(book: any): void {
     const currentFavorites = this.favoritesSubject.value;
-    if (!currentFavorites.find(b => b.id === book.id)) {
+    if (!currentFavorites.find((b) => b.id === book.id)) {
       const newFavorites = [...currentFavorites, book];
       this.favoritesSubject.next(newFavorites);
       this.saveFavoritesToStorage(newFavorites);
     }
   }
 
-  // Remove a book from favorites
+  // Remove book from favorites
   removeFromFavorites(bookId: string): void {
-    const currentFavorites = this.favoritesSubject.value;
-    const newFavorites = currentFavorites.filter(book => book.id !== bookId);
-    this.favoritesSubject.next(newFavorites);
-    this.saveFavoritesToStorage(newFavorites);
+    const updatedFavorites = this.favoritesSubject.value.filter((book) => book.id !== bookId);
+    this.favoritesSubject.next(updatedFavorites);
+    this.saveFavoritesToStorage(updatedFavorites);
   }
 
-  // Check if a book is in favorites
+  // Check if a book is favorited
   isBookFavorite(bookId: string): boolean {
-    return this.favoritesSubject.value.some(book => book.id === bookId);
+    return this.favoritesSubject.value.some((book) => book.id === bookId);
   }
 
-  // Get current favorites
-  getFavorites(): Book[] {
-    return this.favoritesSubject.value;
-  }
-
-  // Private helper methods
-  private loadFavoritesFromStorage(): Book[] {
-    const storedFavorites = localStorage.getItem('bookFavorites');
+  // Load favorites from local storage
+  private loadFavoritesFromStorage(): any[] {
+    const storedFavorites = localStorage.getItem('favoriteBooks');
     return storedFavorites ? JSON.parse(storedFavorites) : [];
   }
 
-  private saveFavoritesToStorage(favorites: Book[]): void {
-    localStorage.setItem('bookFavorites', JSON.stringify(favorites));
+  // Save favorites to local storage
+  private saveFavoritesToStorage(favorites: any[]): void {
+    localStorage.setItem('favoriteBooks', JSON.stringify(favorites));
   }
+  getFavorites(): any[] {
+    return this.favoritesSubject.value; // Return current favorite books list
+  }
+
 }

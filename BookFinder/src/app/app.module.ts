@@ -7,10 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { initializeMockServer } from './core/services/mock-data.service';
+import {HeaderComponent} from './core/components/header/header.component';
 
-// Initialize mock server
-initializeMockServer();
 
 @NgModule({
   declarations: [
@@ -23,7 +21,8 @@ initializeMockServer();
     FormsModule,
     ReactiveFormsModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    HeaderComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

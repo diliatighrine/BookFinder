@@ -1,64 +1,52 @@
-<!-- src/app/features/books/components/book-list/book-list.component.html -->
 <div class="container py-4">
-  <!-- Search and Filter Section -->
-  <div class="row mb-4">
-    <div class="col-md-6 mb-3 mb-md-0">
-      <app-book-search (search)="onSearch($event)"></app-book-search>
-    </div>
-    <div class="col-md-6">
-      <select class="form-select" (change)="onCategoryChange($event)">
-        <option value="">All Categories</option>
-        <option *ngFor="let category of categories$ | async" [value]="category.name">
-          {{ category.name }}
-        </option>
-      </select>
-    </div>
-  </div>
+  <!-- Search Section -->
+  <div class="mb-4">
+    <input
+      #searchInput
+      type="text"
+      class="form-control"
+      placeholder="Search books by title or author..."
+      (input)="onSearch(searchInput.value)"
+    />
 
-  <!-- Loading State -->
-  <div *ngIf="isLoading" class="text-center py-5">
-    <div class="spinner-border text-primary" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
-
-  <!-- Error State -->
-  <div *ngIf="error" class="alert alert-danger" role="alert">
-    {{ error }}
   </div>
 
   <!-- Books Grid -->
-  <div *ngIf="!isLoading && !error" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <div class="col" *ngFor="let book of filteredBooks$ | async">
-      <div class="card h-100 book-card">
-        <div class="card-img-container">
-          <img [src]="book.coverImage" class="card-img-top" [alt]="book.title">
-        </div>
+  <div *ngIf="books$ | async as books" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div class="col" *ngFor="let book of books">
+      <div class="card h-100">
+        <img
+          [src]="book?.volumeInfo?.imageLinks?.thumbnail || 'assets/images/placeholder.png'"
+
+          [alt]="book.volumeInfo.title || 'No Title Available'"
+        />
+
         <div class="card-body">
-          <h5 class="card-title">{{ book.title }}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{ book.author }}</h6>
-          <p class="card-text description">{{ book.description }}</p>
-          <div class="category-badge mb-3">
-            {{ book.category }}
-          </div>
-        </div>
+          <h5 class="card-title">{{ book.volumeInfo.title }}</h5>
+          <h6 class="card-subtitle text-muted">{{ book.volumeInfo.authors?.join(', ') }}</h6>
+          <p class="card-text">
+            <span *ngIf="!expandedBooks[book.id]">
+              {{ book.volumeInfo.description | slice:0:100 }}...
+              <a href="#" (click)="toggleExpand(book.id); $event.preventDefault()">Read More</a>
+            </span>
+            <span *ngIf="expandedBooks[book.id]">
+              {{ book.volumeInfo.description }}
+              <a href="#" (click)="toggleExpand(book.id); $event.preventDefault()">Show Less</a>
+            </span>
+          </p>        </div>
         <div class="card-footer bg-transparent">
-          <div class="d-flex justify-content-between align-items-center">
-            <a [routerLink]="['/book', book.id]" class="btn btn-primary">View Details</a>
-            <button
-              class="btn btn-favorite"
-              [class.favorited]="isBookFavorite(book.id)"
-              (click)="toggleFavorite(book)">
-              <i class="bi" [class.bi-heart-fill]="isBookFavorite(book.id)" [class.bi-heart]="!isBookFavorite(book.id)"></i>
-            </button>
-          </div>
+          <a [href]="book.volumeInfo.previewLink" target="_blank" class="btn btn-primary">Preview</a>
+          <!-- Favorite Button -->
+          <button class="btn btn-outline-danger" (click)="toggleFavorite(book)">
+            <i class="bi" [class.bi-heart-fill]="isFavorite(book.id)" [class.bi-heart]="!isFavorite(book.id)"></i>
+          </button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- No Results -->
-  <div *ngIf="(filteredBooks$ | async)?.length === 0" class="text-center py-5">
+  <div *ngIf="(books$ | async)?.length === 0" class="text-center py-5">
     <p class="h4 text-muted">No books found matching your criteria</p>
   </div>
 </div>

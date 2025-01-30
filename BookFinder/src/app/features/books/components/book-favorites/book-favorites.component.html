@@ -1,1 +1,29 @@
-<p>book-favorites works!</p>
+<div class="container py-4">
+  <h2>Favorite Books</h2>
+
+  <!-- Display Favorite Books -->
+  <div *ngIf="favoriteBooks.length > 0; else emptyState" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div class="col" *ngFor="let book of favoriteBooks">
+      <div class="card h-100">
+        <img
+          [src]="book?.volumeInfo?.imageLinks?.thumbnail || 'assets/images/placeholder.png'"
+          class="card-img-top"
+          [alt]="book.volumeInfo.title || 'No Title Available'"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ book.volumeInfo.title || 'No Title' }}</h5>
+          <h6 class="card-subtitle text-muted">{{ book.volumeInfo.authors?.join(', ') || 'Unknown Author' }}</h6>
+        </div>
+        <div class="card-footer bg-transparent d-flex justify-content-between">
+          <a [href]="book.volumeInfo.previewLink || '#'" target="_blank" class="btn btn-primary">Preview</a>
+          <button class="btn btn-danger" (click)="removeFavorite(book.id)">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <ng-template #emptyState>
+    <p class="text-center h4 text-muted">You have no favorite books.</p>
+  </ng-template>
+</div>
