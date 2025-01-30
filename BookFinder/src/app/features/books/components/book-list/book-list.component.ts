@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {BookService} from '../../../../core/services/book.service';
 import {AsyncPipe, NgForOf, NgIf, SlicePipe} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,8 @@ import {AsyncPipe, NgForOf, NgIf, SlicePipe} from '@angular/common';
     AsyncPipe,
     NgIf,
     NgForOf,
-    SlicePipe
+    SlicePipe,
+    RouterLink
   ],
   styleUrls: ['./book-list.component.scss']
 })

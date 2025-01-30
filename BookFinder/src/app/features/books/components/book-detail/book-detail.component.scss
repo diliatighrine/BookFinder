@@ -1,0 +1,31 @@
+.book-detail-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.book-image {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.book-info {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.btn-preview {
+  background-color: #28a745;
+  color: #fff;
+  &:hover {
+    background-color: #218838;
+  }
+}

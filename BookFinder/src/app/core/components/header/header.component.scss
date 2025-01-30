@@ -1,18 +1,24 @@
+.navbar {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* ✅ Adds a subtle shadow */
+}
+
 .navbar-brand {
-  font-weight: bold;
   font-size: 1.5rem;
+  font-weight: bold;
+  color: white !important; /* ✅ Ensure contrast */
 }
 
-.nav-link {
-  font-size: 1.1rem;
-  padding: 0.5rem 1rem;
+.navbar-nav .badge {
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  vertical-align: middle; /* ✅ Keeps it aligned */
+}
 
-  &.active {
-    font-weight: 600;
+.navbar-nav .nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  color: white !important; /* ✅ Ensure all links are white */
+  &:hover {
+    color: #dbeafe !important; /* ✅ Slight hover effect */
   }
-}
-
-.badge {
-  margin-left: 5px;
-  padding: 0.35em 0.65em;
 }

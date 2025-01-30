@@ -25,12 +25,13 @@ export class BookService {
   }
 
   // Get book details by ID
-  getBookById(id: string): Observable<any> {
-    const url = `${this.googleBooksApiUrl}/${id}?key=${this.apiKey}`;
+  getBookById(bookId: string): Observable<any> {
+    const url = `${this.googleBooksApiUrl}/${bookId}?key=${this.apiKey}`;
     return this.http.get<any>(url).pipe(
-      map((response) => response.volumeInfo) // Map to book details
+      map((response) => response.volumeInfo) // Extract book details
     );
   }
+
   // Add book to favorites
   addToFavorites(book: any): void {
     const currentFavorites = this.favoritesSubject.value;

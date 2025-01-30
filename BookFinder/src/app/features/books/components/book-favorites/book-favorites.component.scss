@@ -1,0 +1,17 @@
+.favorites-container {
+  padding: 20px;
+}
+
+.favorite-card {
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.favorite-btn {
+  color: #dc3545;
+  &:hover {
+    color: #a71d2a;
+  }
+}
