@@ -17,10 +17,10 @@ export class BookService {
   constructor(private http: HttpClient) {}
 
   // Search books using Google Books API
-  searchBooks(query: string): Observable<any[]> {
-    const url = `${this.googleBooksApiUrl}?q=${query}&key=${this.apiKey}`;
+  searchBooks(query: string, startIndex: number = 0, maxResults: number = 15): Observable<any[]> {
+    const url = `${this.googleBooksApiUrl}?q=${query}&startIndex=${startIndex}&maxResults=${maxResults}&key=${this.apiKey}`;
     return this.http.get<any>(url).pipe(
-      map((response) => response.items || []) // Map response to books array
+      map((response) => response.items || [])
     );
   }
 
@@ -66,5 +66,21 @@ export class BookService {
   getFavorites(): any[] {
     return this.favoritesSubject.value; // Return current favorite books list
   }
+
+
+  getBooksByCategory(category: string, startIndex: number = 0, maxResults: number = 15): Observable<any[]> {
+    const url = `${this.googleBooksApiUrl}?q=subject:${category}&startIndex=${startIndex}&maxResults=${maxResults}&key=${this.apiKey}`;
+    return this.http.get<any>(url).pipe(
+      map((response) => response.items || [])
+    );
+  }
+
+  getBooksByCategoryAndSearchQuery(query: string ,category: string, startIndex: number = 0, maxResults: number = 15): Observable<any[]> {
+    const url = `${this.googleBooksApiUrl}?q=${query}+subject:${category}&startIndex=${startIndex}&maxResults=${maxResults}&key=${this.apiKey}`;
+    return this.http.get<any>(url).pipe(
+      map((response) => response.items || [])
+    );
+  }
+
 
 }

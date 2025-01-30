@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2293d04c-e404-405d-8dd3-155de6b2baf3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/BookFinder/public/placeholder.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookFinder/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookFinder/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BookFinder/src/app/core/services/book.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/core/services/book.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/core/services/mock-data.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-favorites/book-favorites.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-favorites/book-favorites.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-favorites/book-favorites.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-favorites/book-favorites.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-list/book-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-list/book-list.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-list/book-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-list/book-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookFinder/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +60,12 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Master Miage cours\Web  Angular\BookFinder\BookFinder\public" />
+      <recent name="D:\Master Miage cours\Web  Angular\BookFinder\BookFinder\src\assets\images" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -83,7 +83,7 @@
       <updated>1737985039347</updated>
       <workItem from="1737985042152" duration="8151000" />
       <workItem from="1738056266701" duration="8499000" />
-      <workItem from="1738230019660" duration="3173000" />
+      <workItem from="1738230019660" duration="9111000" />
     </task>
     <servers />
   </component>
