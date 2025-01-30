@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2293d04c-e404-405d-8dd3-155de6b2baf3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BookFinder/public/placeholder.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/core/services/book.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/core/services/book.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-list/book-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-list/book-list.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-list/book-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-list/book-list.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +79,7 @@
       <updated>1737985039347</updated>
       <workItem from="1737985042152" duration="8151000" />
       <workItem from="1738056266701" duration="8499000" />
-      <workItem from="1738230019660" duration="9111000" />
+      <workItem from="1738230019660" duration="9646000" />
     </task>
     <servers />
   </component>

@@ -6,7 +6,7 @@
     <div class="col" *ngFor="let book of favoriteBooks">
       <div class="card h-100">
         <img
-          [src]="book?.volumeInfo?.imageLinks?.thumbnail || 'assets/images/placeholder.png'"
+          [src]="book?.volumeInfo?.imageLinks?.thumbnail || 'placeholder.png'"
           class="card-img-top"
           [alt]="book.volumeInfo.title || 'No Title Available'"
         />
