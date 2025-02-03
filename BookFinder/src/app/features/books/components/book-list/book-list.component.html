@@ -20,7 +20,7 @@
     <div class="col" *ngFor="let book of books">
       <div class="card h-100 book-card">
         <img
-          [src]="book?.volumeInfo?.imageLinks?.large || book?.volumeInfo?.imageLinks?.medium || book?.volumeInfo?.imageLinks?.thumbnail || 'assets/images/placeHolder.png'"
+          [src]="book?.volumeInfo?.imageLinks?.large || book?.volumeInfo?.imageLinks?.medium || book?.volumeInfo?.imageLinks?.thumbnail || 'placeholder.png'"
           class="card-img-top"
           [alt]="book.volumeInfo.title || 'No Title Available'"
         />
