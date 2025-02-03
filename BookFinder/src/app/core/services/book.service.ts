@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {BehaviorSubject, Observable, switchMap} from 'rxjs';
+import {BehaviorSubject, Observable, of, switchMap} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Book } from '../../shared/models/book.model';
 import {AuthService} from './auth.service';
@@ -17,7 +17,7 @@ import {
   addDoc
 } from '@angular/fire/firestore';
 import { inject } from '@angular/core';
-import {Auth} from '@angular/fire/auth';
+import {Auth, authState} from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -74,23 +74,18 @@ export class BookService {
 
 
   getFavorites(): Observable<any[]> {
-    return new Observable(observer => {
-      const user = this.auth.currentUser;
-      if (!user) {
-        observer.next([]);
-        observer.complete();
-        return;
-      }
+    return authState(this.auth).pipe(
+      switchMap(user => {
+        if (!user) {
+          return of([]); // ✅ Return empty list if not logged in
+        }
 
-      const favCollection = collection(this.firestore, 'favorites');
-      const favQuery = query(favCollection, where('userId', '==', user.uid));
+        const favCollection = collection(this.firestore, 'favorites');
+        const favQuery = query(favCollection, where('userId', '==', user.uid));
 
-      collectionData(favQuery).subscribe({
-        next: (favorites) => observer.next(favorites),
-        error: (err) => observer.error(err),
-        complete: () => observer.complete()
-      });
-    });
+        return collectionData(favQuery, { idField: 'id' });
+      })
+    );
   }
 
 

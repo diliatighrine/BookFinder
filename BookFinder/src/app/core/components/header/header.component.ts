@@ -33,8 +33,8 @@ export class HeaderComponent implements OnInit {
     this.currentUser$ = this.authService.getCurrentUser();
 
     // Fetch user-specific favorites count
-    this.favoritesCount$ = from(this.bookService.getFavorites()).pipe(
-      map(favorites => favorites.length)
+    this.favoritesCount$ = this.bookService.getFavorites().pipe(
+      map(favorites => favorites?.length || 0) // ✅ Ensure count is always a number
     );
   }
 
