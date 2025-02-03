@@ -5,8 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2293d04c-e404-405d-8dd3-155de6b2baf3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/BookFinder/src/app/core/guards/auth.guard.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookFinder/src/app/core/services/auth.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BookFinder/src/environments/environment.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookFinder/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookFinder/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/core/components/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/core/components/header/header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/core/components/header/header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/core/components/header/header.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/core/components/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/core/components/header/header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/core/services/book.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/core/services/book.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-detail/book-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-detail/book-detail.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-favorites/book-favorites.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-favorites/book-favorites.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-favorites/book-favorites.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-favorites/book-favorites.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-list/book-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-list/book-list.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-list/book-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/app/features/books/components/book-list/book-list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookFinder/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/BookFinder/src/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,19 +62,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\Master Miage cours\\Web  Angular\\BookFinder\\BookFinder\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "D:\\Master Miage cours\\Web  Angular\\BookFinder\\BookFinder\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Master Miage cours\Web  Angular\BookFinder\BookFinder\public" />
@@ -81,7 +99,7 @@
       <workItem from="1737985042152" duration="8151000" />
       <workItem from="1738056266701" duration="8499000" />
       <workItem from="1738230019660" duration="13056000" />
-      <workItem from="1738576269505" duration="160000" />
+      <workItem from="1738576269505" duration="21129000" />
     </task>
     <servers />
   </component>

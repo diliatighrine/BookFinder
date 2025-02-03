@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {BookService} from '../../../../core/services/book.service';
 import {NgForOf, NgIf} from '@angular/common';
+import {from} from 'rxjs';
 
 @Component({
-  selector: 'app-favorites',
+  selector: 'app-book-favorites',
   templateUrl: './book-favorites.component.html',
   standalone: true,
   imports: [
@@ -13,20 +14,18 @@ import {NgForOf, NgIf} from '@angular/common';
   styleUrls: ['./book-favorites.component.scss']
 })
 export class BookFavoritesComponent implements OnInit {
-  favoriteBooks: any[] = []; // ✅ Ensure this variable is defined
+  favoriteBooks: any[] = []; // ✅ Ensures this is an array
 
   constructor(private bookService: BookService) {}
 
   ngOnInit(): void {
-    this.loadFavorites();
-  }
-
-  loadFavorites(): void {
-    this.favoriteBooks = this.bookService.getFavorites(); // ✅ Fetch favorite books
+    from(this.bookService.getFavorites()).subscribe(favorites => {
+      this.favoriteBooks = favorites; // ✅ Assign favorites from Observable
+    });
   }
 
   removeFavorite(bookId: string): void {
     this.bookService.removeFromFavorites(bookId);
-    this.loadFavorites(); // ✅ Refresh the list after removal
+    this.favoriteBooks = this.favoriteBooks.filter(book => book.bookId !== bookId); // ✅ Remove locally
   }
 }

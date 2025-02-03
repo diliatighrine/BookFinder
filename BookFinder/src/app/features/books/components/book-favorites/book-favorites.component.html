@@ -6,17 +6,21 @@
     <div class="col" *ngFor="let book of favoriteBooks">
       <div class="card h-100">
         <img
-          [src]="book?.volumeInfo?.imageLinks?.thumbnail || 'placeholder.png'"
+          [src]="book?.book?.volumeInfo?.imageLinks?.thumbnail || 'placeholder.png'"
           class="card-img-top"
-          [alt]="book.volumeInfo.title || 'No Title Available'"
+          [alt]="book?.book?.volumeInfo?.title || 'No Title Available'"
         />
         <div class="card-body">
-          <h5 class="card-title">{{ book.volumeInfo.title || 'No Title' }}</h5>
-          <h6 class="card-subtitle text-muted">{{ book.volumeInfo.authors?.join(', ') || 'Unknown Author' }}</h6>
+          <h5 class="card-title">
+            {{ book?.book?.volumeInfo?.title || 'No Title' }}
+          </h5>
+          <h6 class="card-subtitle text-muted">
+            {{ book?.book?.volumeInfo?.authors?.join(', ') || 'Unknown Author' }}
+          </h6>
         </div>
         <div class="card-footer bg-transparent d-flex justify-content-between">
-          <a [href]="book.volumeInfo.previewLink || '#'" target="_blank" class="btn btn-primary">Preview</a>
-          <button class="btn btn-danger" (click)="removeFavorite(book.id)">Remove</button>
+          <a [href]="book?.book?.volumeInfo?.previewLink || '#'" target="_blank" class="btn btn-primary">Preview</a>
+          <button class="btn btn-danger" (click)="removeFavorite(book.bookId)">Remove</button>
         </div>
       </div>
     </div>

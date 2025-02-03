@@ -1,8 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, switchMap} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Book } from '../../shared/models/book.model';
+import {AuthService} from './auth.service';
+import {
+  Firestore,
+  collection,
+  doc,
+  setDoc,
+  deleteDoc,
+  collectionData,
+  getDocs,
+  query,
+  where,
+  addDoc
+} from '@angular/fire/firestore';
+import { inject } from '@angular/core';
+import {Auth} from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +25,10 @@ import { Book } from '../../shared/models/book.model';
 export class BookService {
   private googleBooksApiUrl = 'https://www.googleapis.com/books/v1/volumes';
   private apiKey = 'AIzaSyCFtFVHqxUhW_xQNvNt9AqsxMNrv3g7Q5w'; // Replace with your API key
-  private favoritesSubject = new BehaviorSubject<Book[]>(this.loadFavoritesFromStorage());
-  favorites$ = this.favoritesSubject.asObservable(); // Ensure this is exported and accessible
+  private firestore = inject(Firestore);
+  private auth = inject(Auth);
+  private http = inject(HttpClient);
 
-
-  constructor(private http: HttpClient) {}
 
   // Search books using Google Books API
   searchBooks(query: string, startIndex: number = 0, maxResults: number = 15): Observable<any[]> {
@@ -33,40 +47,52 @@ export class BookService {
   }
 
   // Add book to favorites
-  addToFavorites(book: any): void {
-    const currentFavorites = this.favoritesSubject.value;
-    if (!currentFavorites.find((b) => b.id === book.id)) {
-      const newFavorites = [...currentFavorites, book];
-      this.favoritesSubject.next(newFavorites);
-      this.saveFavoritesToStorage(newFavorites);
-    }
+  async addToFavorites(book: any): Promise<void> {
+    const user = this.auth.currentUser;
+    if (!user) return;
+
+    await addDoc(collection(this.firestore, 'favorites'), {
+      userId: user.uid,
+      bookId: book.id,
+      book: book
+    });
   }
 
   // Remove book from favorites
-  removeFromFavorites(bookId: string): void {
-    const updatedFavorites = this.favoritesSubject.value.filter((book) => book.id !== bookId);
-    this.favoritesSubject.next(updatedFavorites);
-    this.saveFavoritesToStorage(updatedFavorites);
+  async removeFromFavorites(bookId: string): Promise<void> {
+    const user = this.auth.currentUser;
+    if (!user) return;
+
+    const favCollection = collection(this.firestore, 'favorites');
+    const favQuery = query(favCollection, where('userId', '==', user.uid), where('bookId', '==', bookId));
+    const querySnapshot = await getDocs(favQuery);
+
+    querySnapshot.forEach(async (docSnapshot) => {
+      await deleteDoc(doc(this.firestore, 'favorites', docSnapshot.id));
+    });
   }
 
-  // Check if a book is favorited
-  isBookFavorite(bookId: string): boolean {
-    return this.favoritesSubject.value.some((book) => book.id === bookId);
+
+  getFavorites(): Observable<any[]> {
+    return new Observable(observer => {
+      const user = this.auth.currentUser;
+      if (!user) {
+        observer.next([]);
+        observer.complete();
+        return;
+      }
+
+      const favCollection = collection(this.firestore, 'favorites');
+      const favQuery = query(favCollection, where('userId', '==', user.uid));
+
+      collectionData(favQuery).subscribe({
+        next: (favorites) => observer.next(favorites),
+        error: (err) => observer.error(err),
+        complete: () => observer.complete()
+      });
+    });
   }
 
-  // Load favorites from local storage
-  private loadFavoritesFromStorage(): any[] {
-    const storedFavorites = localStorage.getItem('favoriteBooks');
-    return storedFavorites ? JSON.parse(storedFavorites) : [];
-  }
-
-  // Save favorites to local storage
-  private saveFavoritesToStorage(favorites: any[]): void {
-    localStorage.setItem('favoriteBooks', JSON.stringify(favorites));
-  }
-  getFavorites(): any[] {
-    return this.favoritesSubject.value; // Return current favorite books list
-  }
 
 
   getBooksByCategory(category: string, startIndex: number = 0, maxResults: number = 15): Observable<any[]> {

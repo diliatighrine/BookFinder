@@ -59,6 +59,7 @@
   <div class="pagination-controls">
     <button class="btn btn-secondary" (click)="prevPage()" [disabled]="currentPage === 0">Previous</button>
     <span class="align-self-center">Page {{ currentPage + 1 }}</span>
-    <button class="btn btn-secondary" (click)="nextPage()">Next</button>
-  </div>
+    <button class="btn btn-secondary" (click)="nextPage()" [disabled]="totalBooksFetched < maxResults">
+      Next
+    </button>  </div>
 </div>
