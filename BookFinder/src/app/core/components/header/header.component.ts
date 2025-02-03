@@ -40,8 +40,8 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.authService.logout().then(() => {
-      this.router.navigate(['/login']).then(() => { // ✅ Now router exists
-        window.location.reload(); // ✅ Ensures auth state is fully reset
+      this.router.navigate(['/login']).then(() => {
+        window.location.reload();
       });
     });
   }
