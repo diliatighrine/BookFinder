@@ -1,0 +1,55 @@
+.container {
+    /* Ajout de l'image de fond */
+    background-image: url('register.png'); /* Remplace par ton image */
+    background-size: cover; /* L'image couvre toute la surface */
+    background-position: center; /* Centrer l'image */
+    background-attachment: fixed; /* L'image reste fixe lors du défilement */
+    width: 100vw; /* Largeur du conteneur égale à la largeur de la fenêtre */
+    height: 100vh; /* Hauteur du conteneur égale à la hauteur de la fenêtre */
+  
+    /* Flexbox pour centrer le formulaire */
+    display: flex;
+    justify-content: center; /* Centre le contenu horizontalement */
+    align-items: center; /* Centre le contenu verticalement */
+    text-align: center; /* Centre le texte à l'intérieur du formulaire */
+  
+    
+  }
+  
+  /* Formulaire centré */
+  form {
+    background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent pour améliorer la lisibilité du texte */
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px; /* Largeur maximale du formulaire */
+  }
+  
+  /* Titre de la page */
+  h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  
+  /* Inputs et boutons du formulaire */
+  input, button {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  button {
+    background-color: #007bff; /* Couleur de fond du bouton */
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Changement de couleur lors du survol */
+  }
+  
+  /* Message d'erreur */
+  .text-danger {
+    margin-top: 1rem;
+  }
