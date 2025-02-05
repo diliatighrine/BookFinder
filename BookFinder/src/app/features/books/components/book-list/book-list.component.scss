@@ -1,78 +1,56 @@
 .book-list-container {
-  /* Ajout de l'image de fond, couverture complète */
-  background-image: url('Home.png'); /* Remplace par ton image */
-  background-size: cover; /* Couvre toute la surface */
-  background-position: center; /* Centre l'image */
-  background-attachment: fixed; /* Rendre l'image fixe lors du défilement */
-  min-height: 100vh;
-  width: 100vw; /* Assure que la largeur est égale à la largeur de la fenêtre */
-  height: 100vh; /* Assure que la hauteur est égale à la hauteur de la fenêtre */
-
- 
-  display: flex; /* Utilise flexbox pour gérer le contenu */
-  flex-direction: column; /* Affiche les éléments du contenu en colonne */
-  align-items: center; /* Centre les éléments horizontalement */
-  justify-content: flex-start; /* Aligne les éléments en haut de la page */
-  text-align: center; /* Centre le texte */
-  padding: 5rem 2rem;
- 
-  position: relative; /* Permet l'ajout de pseudo-éléments ou autres contenus superposés */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.book-list-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3); /* Superposition sombre avec transparence */
-  z-index: 0; /* Place la superposition derrière le contenu */
-}
-
-.container {
-  position: relative;
-  z-index: 1; /* S'assure que le contenu reste au-dessus de l'image */
-}
-
-/* Champs de saisie */
-.select-category,
-.search-bar {
-  position: relative;
-  z-index: 2; /* Maintient les champs au-dessus de l'image de fond */
-}
-
-.select-category {
-  width: 200px;
-}
-
-.search-bar {
-  width: 300px;
-}
-
-/* Pagination Controls */
-.pagination-controls {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
-
-  .btn {
-    background-color: #8B4513;
-    color: white;
-
-    &:hover {
-      background-color: darken(#8B4513, 10%);
-    }
+.book-card {
+  transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.02);
   }
 }
 
-/* État vide lorsque aucun livre n'est trouvé */
-.empty-state {
-  font-size: 3rem; /* Taille du texte */
-  font-weight: 1000; /* Gras */
-  color: #fff; /* Blanc pour contraster avec l'arrière-plan */
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); /* Meilleure lisibilité */
-  position: relative;
-  z-index: 1; /* Mettre l'élément au-dessus du fond */
+.card-img-top {
+  width: 100%;
+  height: 250px; /* Adjust as needed */
+  object-fit: contain; /* ✅ Ensures full image is visible */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #f8f8f8; /* Prevents blank areas */
+}
+
+
+.card-body {
+  text-align: center;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-favorite {
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  color: #dc3545;
+  &:hover {
+    color: #a71d2a;
+  }
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.select-category {
+  margin-bottom: 20px;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
